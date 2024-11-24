@@ -6,6 +6,8 @@
 
     .main-content {
         margin-left: 0;
+        /* Remove left margin when sidebar collapses */
+        padding: 20px;
     }
 
     .top-bar {
@@ -23,6 +25,7 @@
         grid-template-columns: 1fr;
         gap: 20px;
         justify-items: center;
+        /* Ensure cards are centered on smaller screens */
     }
 
     .card {

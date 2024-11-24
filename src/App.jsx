@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import CardContainer from './components/CardContainer';
 import { FilterProvider } from './context/FilterContext';
+import './App.css';
 
 function App() {
   const [links, setLinks] = useState([

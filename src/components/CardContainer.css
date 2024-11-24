@@ -1,0 +1,7 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center; /* Or use 'space-around' or 'space-evenly' for better distribution */
+    padding: 20px; /* Add some padding to prevent cards from touching the edges */
+}

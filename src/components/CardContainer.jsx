@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import Card from './Card';
+import "./CardContainer.css"
 import FilterContext from '../context/FilterContext';
 
 function CardContainer({ links, onEdit, onDelete }) {
