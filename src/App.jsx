@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import TopBar from './components/TopBar';
+import CardContainer from './components/CardContainer';
+import { FilterProvider } from './context/FilterContext';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [links, setLinks] = useState([
+    { title: 'Example Link', description: 'This is an example link', link: '#', isGrouped: false },
+    { title: 'Example Group', description: 'This is an example group', isGrouped: true },
+  ]);
+
+  const addLink = (newLink) => {
+    setLinks([...links, newLink]);
+  };
+
+  const editLink = (index, updatedLink) => {
+    const updatedLinks = [...links];
+    updatedLinks[index] = updatedLink;
+    setLinks(updatedLinks);
+  };
+
+  const deleteLink = (index) => {
+    setLinks(links.filter((_, i) => i !== index));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <FilterProvider>
+      <div className="App">
+        <Sidebar />
+        <div className="main-content">
+          <TopBar addLink={addLink} />
+          <CardContainer
+            links={links}
+            onEdit={(index) => editLink(index, { ...links[index], title: 'Updated Title' })}
+            onDelete={deleteLink}
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test Rami
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </FilterProvider>
+  );
 }
 
-export default App
+export default App;
+
